@@ -22,10 +22,10 @@ class CreateMasjidsTable extends Migration
                 ->onDelete('cascade');
 
             $table->string('name');
-            $table->string('description');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('coordinates');
+            $table->string('description')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('coordinates')->nullable();
 
             $table->timestamps();
         });

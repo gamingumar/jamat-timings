@@ -19,5 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('masjids', 'MasjidController');
+Route::resource('timings', 'NamazController');
+
 // React App Route
 Route::any('{all}', 'HomeController@index')->where(['all' => '.*']);

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Masjid;
+use App\Namaz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasjidController extends Controller
 {
@@ -14,7 +16,7 @@ class MasjidController extends Controller
      */
     public function index()
     {
-        //
+        return Masjid::all();
     }
 
     /**
@@ -35,7 +37,21 @@ class MasjidController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'masjid' => 'required',
+            'masjid.name' => 'required',
+        ]);
+
+        try {
+            $data = $request->masjid;
+            $data['user_id'] = Auth::id();
+
+            $data = (array) $data;
+
+            return Masjid::create($data);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 
     /**

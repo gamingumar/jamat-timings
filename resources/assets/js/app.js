@@ -31,7 +31,6 @@ if (element) {
         <Route exact path={'/home'} component={Home} />
         <Route path={'/masjid'} component={MasjidForm} />
       </Master>
-
     </BrowserRouter>,
     element
   );
