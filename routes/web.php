@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// React App Route
+Route::any('{all}', 'HomeController@index')->where(['all' => '.*']);
