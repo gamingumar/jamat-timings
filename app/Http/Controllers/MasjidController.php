@@ -96,6 +96,6 @@ class MasjidController extends Controller
      */
     public function destroy(Masjid $masjid)
     {
-        //
+        return response()->json($masjid->delete());
     }
 }

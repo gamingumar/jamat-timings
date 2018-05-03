@@ -22,5 +22,5 @@ Route::get('test', function() {
 });
 
 
-Route::resource('masjids', 'MasjidController');
-Route::resource('timings', 'NamazController');
+//Route::resource('masjids', 'MasjidController');
+//Route::resource('timings', 'NamazController');

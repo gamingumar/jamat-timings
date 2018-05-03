@@ -60035,6 +60035,44 @@ var MasjidForm = function (_Component) {
       return function (_x) {
         return _ref3.apply(this, arguments);
       };
+    }(), _this._deleteMasjid = function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(id) {
+        var response;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios.delete('/masjids/' + id);
+
+              case 3:
+                response = _context3.sent;
+
+                console.log('delete response: ', response.data);
+
+                _this._fetchMasjids();
+                _context3.next = 12;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3['catch'](0);
+
+                console.error(_context3.t0.response.data.message || _context3.t0);
+                alert(_context3.t0.response.data.message || _context3.t0);
+
+              case 12:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, _this2, [[0, 8]]);
+      }));
+
+      return function (_x2) {
+        return _ref4.apply(this, arguments);
+      };
     }(), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -60062,11 +60100,27 @@ var MasjidForm = function (_Component) {
         null,
         this.state.masjids.map(function (masjid) {
           return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-            'p',
+            'div',
             { key: masjid.id },
-            masjid.name
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              'p',
+              null,
+              masjid.name,
+              ' ',
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                'a',
+                {
+                  onClick: function onClick() {
+                    return _this3._deleteMasjid(masjid.id);
+                  },
+                  title: 'delete',
+                  className: 'btn text-danger' },
+                '(x)'
+              )
+            )
           );
         }),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('hr', null),
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
           'h3',
           null,

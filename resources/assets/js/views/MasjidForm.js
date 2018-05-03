@@ -55,12 +55,33 @@ export default class MasjidForm extends Component {
     }
   };
 
+  _deleteMasjid = async (id) => {
+    try {
+      const response = await axios.delete(`/masjids/${id}`);
+      console.log('delete response: ', response.data);
+
+      this._fetchMasjids();
+    } catch (e) {
+      console.error(e.response.data.message || e);
+      alert(e.response.data.message || e);
+    }
+  };
+
   render() {
     return (
       <div>
         {
-          this.state.masjids.map(masjid => <p key={masjid.id}>{masjid.name}</p>)
+          this.state.masjids.map(masjid =>
+            <div key={masjid.id}>
+              <p>{masjid.name} <a
+                onClick={ () => this._deleteMasjid(masjid.id) }
+                title={'delete'}
+                className={'btn text-danger'}>(x)</a>
+              </p>
+            </div>
+          )
         }
+        <hr/>
 
         <h3>Add Masjid</h3>
 
