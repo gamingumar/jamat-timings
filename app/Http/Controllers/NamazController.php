@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Masjid;
 use App\Namaz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NamazController extends Controller
 {
@@ -35,7 +37,35 @@ class NamazController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'namaz' => 'required',
+            'namaz.masjid_id' => 'required',
+        ]);
+
+        try {
+            $data = $request->namaz;
+
+            $user = Auth::user();
+
+            $masjid = $user->masjids()->find($data['masjid_id']);
+
+
+            // find user masjid first
+            if ($masjid) {
+                $namaz = $masjid->namaz;
+
+                if ($namaz) {
+                    return $namaz->update($data);
+                } else {
+                    return $masjid->namaz()->create($data);
+                }
+            } else {
+                return response()->json('You are not authorized', 403);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 
     /**
@@ -44,9 +74,18 @@ class NamazController extends Controller
      * @param  \App\Namaz  $namaz
      * @return \Illuminate\Http\Response
      */
-    public function show(Namaz $namaz)
+    public function show(Request $request, $masjid_id)
     {
-        //
+        try {
+            $masjid = Masjid::find($masjid_id);
+            if($masjid && $masjid->namaz) {
+                return response()->json($masjid->namaz, 200);
+            } else {
+                return response()->json('timings not found', 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 
     /**

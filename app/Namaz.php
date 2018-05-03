@@ -15,4 +15,8 @@ class Namaz extends Model
         'isha',
         'juma'
     ];
+
+    public function masjid() {
+        return $this->belongsTo(Masjid::class);
+    }
 }

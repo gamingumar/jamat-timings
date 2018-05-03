@@ -19,14 +19,15 @@ class CreateNamazsTable extends Migration
             $table->unsignedInteger('masjid_id');
             $table->foreign('masjid_id')
                 ->references('id')->on('masjids')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->unique();
 
-            $table->time('fajr');
-            $table->time('zohar');
-            $table->time('asar');
-            $table->time('maghrib');
-            $table->time('isha');
-            $table->time('juma');
+            $table->time('fajr')->nullable();
+            $table->time('zohar')->nullable();
+            $table->time('asar')->nullable();
+            $table->time('maghrib')->nullable();
+            $table->time('isha')->nullable();
+            $table->time('juma')->nullable();
 
             $table->timestamps();
         });

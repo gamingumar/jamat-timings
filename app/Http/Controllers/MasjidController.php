@@ -16,6 +16,7 @@ class MasjidController extends Controller
      */
     public function index()
     {
+        // TODO - USER ACL
         return Masjid::all();
     }
 
@@ -44,11 +45,16 @@ class MasjidController extends Controller
 
         try {
             $data = $request->masjid;
-            $data['user_id'] = Auth::id();
+//            $data['user_id'] = Auth::id();
 
             $data = (array) $data;
 
-            return Masjid::create($data);
+            $user = Auth::user();
+
+            return $user->masjids()->create($data);
+
+
+//            return Masjid::create($data);
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -62,7 +68,13 @@ class MasjidController extends Controller
      */
     public function show(Masjid $masjid)
     {
-        //
+        try {
+            if($masjid) {
+                return response()->json($masjid, 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
     }
 
     /**
@@ -96,6 +108,17 @@ class MasjidController extends Controller
      */
     public function destroy(Masjid $masjid)
     {
-        return response()->json($masjid->delete());
+        try {
+            $user = Auth::user();
+            $masjid = $user->masjids()->find($masjid->id);
+
+            if (!$masjid) {
+                return response()->json('You are not authorized to delete', 403);
+            }
+            return response()->json($masjid->delete());
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
+
     }
 }

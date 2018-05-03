@@ -12,7 +12,7 @@ export default class Master extends Component {
               <div className="card-body">
                 <div className={'row'}>
                   <Navbar />
-                  <div className={'col-sm-12 col-md-10'}>
+                  <div className={'col-sm-12 col-md-8'}>
                     {this.props.children}
                   </div>
                 </div>

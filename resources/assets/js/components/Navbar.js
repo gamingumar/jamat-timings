@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default class Navbar extends Component {
   render() {
     return (
-      <div className="col-sm-12 col-md-2">
+      <div className="col-sm-12 col-md-4">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <ul className="nav navbar-nav">
-              <li><Link to={'/home'}>Home</Link></li>
-              <li><Link to={'/masjid'}>Masjid</Link></li>
+              <li><NavLink to={'/home'} activeStyle={styles.activeStyle}>Home</NavLink></li>
+              <li><NavLink to={'/masjid'} activeStyle={styles.activeStyle}>Manage Masjids</NavLink></li>
             </ul>
           </div>
         </nav>
@@ -17,3 +17,11 @@ export default class Navbar extends Component {
     );
   }
 }
+
+const styles = {
+  activeStyle: {
+    fontWeight: 'bold',
+    color: 'blue',
+    fontSize: 16
+  }
+};

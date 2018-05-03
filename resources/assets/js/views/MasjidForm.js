@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 export default class MasjidForm extends Component {
 
@@ -73,15 +74,19 @@ export default class MasjidForm extends Component {
         {
           this.state.masjids.map(masjid =>
             <div key={masjid.id}>
-              <p>{masjid.name} <a
-                onClick={ () => this._deleteMasjid(masjid.id) }
-                title={'delete'}
-                className={'btn text-danger'}>(x)</a>
+              <p>
+                <Link to={`/masjid/${masjid.id}`}>{masjid.name}</Link>
+                &nbsp;
+                <a
+                  onClick={ () => this._deleteMasjid(masjid.id) }
+                  title={'delete'}
+                  className={'btn text-danger'}>(x)</a>
               </p>
             </div>
           )
         }
         <hr/>
+
 
         <h3>Add Masjid</h3>
 

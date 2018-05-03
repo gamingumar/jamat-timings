@@ -16,20 +16,33 @@ require('./bootstrap');
 
 // require('./components/Example');
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import React from 'react';
 import { render } from 'react-dom';
 import MasjidForm from './views/MasjidForm';
 import Master from './components/Master';
+import MasjidDetail from './views/MasjidDetail';
 
 const element = document.getElementById('react');
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
+  </div>
+);
 
 if (element) {
   render(
     <BrowserRouter>
       <Master>
-        <Route exact path={'/home'} component={Home} />
-        <Route path={'/masjid'} component={MasjidForm} />
+        <Switch>
+          <Route exact path={'/home'} component={Home} />
+          <Route exact path={'/masjid'} component={MasjidForm} />
+          <Route exact path={'/masjid/:id'} component={MasjidDetail} />
+          <Route component={NoMatch} />
+        </Switch>
       </Master>
     </BrowserRouter>,
     element

@@ -14,4 +14,12 @@ class Masjid extends Model
         'address',
         'coordinates',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function namaz() {
+        return $this->hasOne(Namaz::class);
+    }
 }
