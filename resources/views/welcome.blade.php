@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="http://jamattiming.com">JamatTiming.com</a>
+                    <a href="http://jamattime.com/home">JamatTime.com</a>
                 </div>
 
                 <hr/><br/>
