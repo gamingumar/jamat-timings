@@ -47,6 +47,10 @@ class NamazController extends Controller
 
             $user = Auth::user();
 
+            if (!$user) {
+                return response('Please Login first', 401);
+            }
+
             $masjid = $user->masjids()->find($data['masjid_id']);
 
 

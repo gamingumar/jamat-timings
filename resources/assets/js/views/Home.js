@@ -25,7 +25,7 @@ export default class Home extends Component {
           this.state.masjids.map(masjid =>
             <div key={masjid.id}>
               <p>
-                <Link to={`/masjid/${masjid.id}`}>{masjid.name}</Link>
+                <Link to={`/masjid/${masjid.id}`}><b style={{ fontSize: 20 }}>{masjid.name}</b></Link>
                 {/*&nbsp;*/}
                 {/*<a*/}
                   {/*onClick={ () => this._deleteMasjid(masjid.id) }*/}

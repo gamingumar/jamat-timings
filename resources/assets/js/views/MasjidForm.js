@@ -51,8 +51,8 @@ export default class MasjidForm extends Component {
       }))
 
     } catch (e) {
-      console.error(e.response.data.message || e);
-      alert(e.response.data.message || e);
+      console.error(e.response.data || e);
+      alert(e.response.data || e);
     }
   };
 
@@ -63,8 +63,8 @@ export default class MasjidForm extends Component {
 
       this._fetchMasjids();
     } catch (e) {
-      console.error(e.response.data.message || e);
-      alert(e.response.data.message || e);
+      console.error(e.response.data || e);
+      alert(e.response.data || e);
     }
   };
 

@@ -78,13 +78,21 @@
             @endif
 
             <div class="content">
+
+                <div class="links">
+                    <a href="{{ url('/home') }}">View Timings</a>
+                </div>
+
                 <div class="title m-b-md">
                     Jamat Timing
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/home') }}">Home</a>
-                    <a href="http://gamingumar.com">gamingumar.com</a>
+
+                    <a href="{{ url('/home') }}">Masjids</a>
+
+                    <a href="http://jamattiming.com">JamatTiming.com</a> Powered By &nbsp;
+                    <a href="http://gamingumar.com" target="_blank">gamingumar.com</a>
                 </div>
             </div>
         </div>

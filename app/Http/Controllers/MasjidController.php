@@ -110,6 +110,10 @@ class MasjidController extends Controller
     {
         try {
             $user = Auth::user();
+
+            if (!$user) {
+                return response('Please Login first', 401);
+            }
             $masjid = $user->masjids()->find($masjid->id);
 
             if (!$masjid) {

@@ -62,7 +62,7 @@ export default class MasjidDetail extends Component {
 
       console.log('res: ', response.data);
     } catch (e) {
-      console.error(e.response.data.message || e);
+      console.error(e.response.data || e);
       this.setState({ error: true });
     }
   };
@@ -82,8 +82,8 @@ export default class MasjidDetail extends Component {
 
       console.log('res: ', response.data);
     } catch (e) {
-      console.error(e.response.data.message || e);
-      alert(e.response.data.message || e);
+      console.log(e.response.data || e);
+      alert(e.response.data || e);
       this.setState({ error: true });
     }
   };

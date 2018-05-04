@@ -23,6 +23,6 @@
         {{--</div>--}}
     {{--</div>--}}
 {{--</div>--}}
-<div class="card-body" id="react">React Stuff</div>
+<div class="card-body" id="react">gamingumar.com</div>
 
 @endsection
