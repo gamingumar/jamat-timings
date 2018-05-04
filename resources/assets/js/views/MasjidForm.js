@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 export default class MasjidForm extends Component {
 
@@ -8,7 +9,8 @@ export default class MasjidForm extends Component {
       name: '',
       description: ''
     },
-    masjids: []
+    masjids: [],
+    loading: true,
   };
 
   componentDidMount() {
@@ -16,9 +18,10 @@ export default class MasjidForm extends Component {
   }
 
   _fetchMasjids = async () => {
+    this.setState({ loading: true });
     const response = await axios.get('/masjids');
 
-    this.setState({ masjids: response.data });
+    this.setState({ masjids: response.data, loading: false });
   };
 
   /**
@@ -41,6 +44,7 @@ export default class MasjidForm extends Component {
 
     console.log('sending: ', this.state.newMasjid);
 
+    this.setState({ loading: true });
     try {
       const response = await axios.post('/masjids', {masjid: this.state.newMasjid});
 
@@ -54,6 +58,8 @@ export default class MasjidForm extends Component {
       console.error(e.response.data || e);
       alert(e.response.data || e);
     }
+
+    this.setState({ loading: false });
   };
 
   _deleteMasjid = async (id) => {
@@ -69,6 +75,9 @@ export default class MasjidForm extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loader/>;
+    }
     return (
       <div>
         {

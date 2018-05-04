@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
+import Loader from '../components/Loader';
 
 export default class Home extends Component {
   state = {
-    masjids: []
+    masjids: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -11,12 +13,16 @@ export default class Home extends Component {
   }
 
   _fetchMasjids = async () => {
+    this.setState({ loading: true });
     const response = await axios.get('/masjids');
 
-    this.setState({ masjids: response.data });
+    this.setState({ masjids: response.data, loading: false });
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loader/>;
+    }
     return (
       <div>
         <h1>Masjids</h1>

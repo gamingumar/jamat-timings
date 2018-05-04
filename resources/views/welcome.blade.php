@@ -80,7 +80,7 @@
             <div class="content">
 
                 <div class="links">
-                    <a href="{{ url('/home') }}">View Timings</a>
+                    <a href="{{ url('/home') }}"><h1 style="color: green">View Masjid Timings</h1></a>
                 </div>
 
                 <div class="title m-b-md">
@@ -88,11 +88,12 @@
                 </div>
 
                 <div class="links">
+                    <a href="http://jamattiming.com">JamatTiming.com</a>
+                </div>
 
-                    <a href="{{ url('/home') }}">Masjids</a>
-
-                    <a href="http://jamattiming.com">JamatTiming.com</a> Powered By &nbsp;
-                    <a href="http://gamingumar.com" target="_blank">gamingumar.com</a>
+                <hr/><br/>
+                <div class="links">
+                    Powered By <a href="http://gamingumar.com" target="_blank">gamingumar.com</a>
                 </div>
             </div>
         </div>

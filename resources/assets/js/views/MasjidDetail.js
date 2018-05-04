@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Loader from '../components/Loader';
 
 export default class MasjidDetail extends Component {
   state = {
@@ -54,16 +55,16 @@ export default class MasjidDetail extends Component {
         this.setState({ timing: namazTimings });
 
       } catch (e) {
-        this.setState({ error: 'timings not found '});
+        this.setState({ error: 'timings not found ', loading: false});
       }
 
 
-      this.setState({ name: response.data.name });
+      this.setState({ name: response.data.name, loading: false });
 
       console.log('res: ', response.data);
     } catch (e) {
       console.error(e.response.data || e);
-      this.setState({ error: true });
+      this.setState({ error: true, loading: false });
     }
   };
 
@@ -78,13 +79,13 @@ export default class MasjidDetail extends Component {
       // const masjid_id = this.props.match.params.id;
       const response = await axios.post('/timings', { namaz: this.state.timing });
 
-      // this.setState({ name: response.data.name });
+      this.setState({ loading: false });
 
       console.log('res: ', response.data);
     } catch (e) {
       console.log(e.response.data || e);
       alert(e.response.data || e);
-      this.setState({ error: true });
+      this.setState({ error: true, loading: false });
     }
   };
 
@@ -95,6 +96,10 @@ export default class MasjidDetail extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
+
     const {
       name,
       error,
