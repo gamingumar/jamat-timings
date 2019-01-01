@@ -59,10 +59,12 @@ class NamazController extends Controller
                 $namaz = $masjid->namaz;
 
                 if ($namaz) {
-                    return $namaz->update($data);
+                    $res = response()->json($namaz->update($data));
                 } else {
-                    return $masjid->namaz()->create($data);
+                    $res = $masjid->namaz()->create($data);
                 }
+
+                return response()->json($res);
             } else {
                 return response()->json('You are not authorized', 403);
             }

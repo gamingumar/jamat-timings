@@ -51,8 +51,9 @@ class MasjidController extends Controller
 
             $user = Auth::user();
 
-            return $user->masjids()->create($data);
+            $res = $user->masjids()->create($data);
 
+            return response()->json($res);
 
 //            return Masjid::create($data);
         } catch (\Exception $e) {

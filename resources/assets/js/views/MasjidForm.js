@@ -76,7 +76,7 @@ export default class MasjidForm extends Component {
 
   render() {
     if (this.state.loading) {
-      return <Loader/>;
+      return <Loader />;
     }
     return (
       <div>
